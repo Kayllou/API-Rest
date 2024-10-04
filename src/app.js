@@ -1,4 +1,15 @@
 import express from "express"
+import conectaNaDatabase from "./config/dbConnect.js";
+
+const conexao = await conectaNaDatabase();
+
+conexao.on("error", (erro) => {
+    console.error("a conexao falhou", erro);
+});
+
+conexao.once("open", () => {
+    console.log("conexao feita");
+})
 
 const app = express();
 app.use(express.json());
@@ -51,3 +62,5 @@ app.delete("/livros/:id",  (req, res) => {
 });
 
     export default app;
+
+    //mongodb+srv://admin:<db_password>@cluster0.keyxl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
