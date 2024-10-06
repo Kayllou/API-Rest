@@ -1,4 +1,5 @@
 import express from "express"
+import LivroController from "./src/controllers/livroController.js";
 
 const app = express();
 app.use(express.json());
@@ -23,10 +24,6 @@ function buscaLivro(id) {
 app.get("/", (req, res) => {
     res.status(200).send("Curso de Node.js");
 });
-
-app.get("/livros", (req, res) => {
-    res.status(200).json(livros);
-    });
 
     app.get("/livros/:id", (req, res) => {
         const index = buscaLivro(req.params.id);
